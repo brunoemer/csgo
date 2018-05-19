@@ -32,7 +32,7 @@ then
     export MAXPLAYERS="${MAXPLAYERS:-$(get_metadata MAXPLAYERS)}"
 else
     export SERVER_HOSTNAME="${SERVER_HOSTNAME:-An Amazing CSGO Server}"
-    export SERVER_PASSWORD="${SERVER_PASSWORD:-changeme}"
+    export SERVER_PASSWORD="${SERVER_PASSWORD:-}"
     export RCON_PASSWORD="${RCON_PASSWORD:-changeme}"
     export STEAM_ACCOUNT="${STEAM_ACCOUNT:-changeme}"
     export CSGO_DIR="${CSGO_DIR:-/csgo}"
@@ -71,4 +71,5 @@ SERVERCFG
     +mapgroup $MAPGROUP \
     +map $MAP \
     +ip $IP \
-    +sv_setsteamaccount $STEAM_ACCOUNT
+    +sv_setsteamaccount $STEAM_ACCOUNT \
+    -net_port_try 1

@@ -3,6 +3,7 @@ SHELL := /bin/bash
 IMAGE_NAME ?= counter-strike-go
 STEAM_ACCOUNT ?= 
 STEAM_PASSWORD ?= 
+STEAM_GSLT ?= 
 
 .PHONY: all clean image run
 
@@ -23,10 +24,10 @@ run:
 		-p 27016:27016/udp \
 		-p 27020:27020/udp \
 		-p 27005:27005/udp \
-		-e "SERVER_HOSTNAME=My host" \
+		-e "SERVER_HOSTNAME=" \
 		-e "SERVER_PASSWORD=" \
 		-e "RCON_PASSWORD=" \
-		-e "STEAM_ACCOUNT=$(STEAM_ACCOUNT)" \
+		-e "STEAM_ACCOUNT=$(STEAM_GSLT)" \
 		-e "PORT=27016" \
 		--name counter_strike_go \
 		$(IMAGE_NAME)
