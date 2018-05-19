@@ -1,7 +1,8 @@
 SHELL := /bin/bash
  
-IMAGE_NAME ?= csgo-server
-STEAM_ACCOUNT ?= changeme
+IMAGE_NAME ?= counter-strike-go
+STEAM_ACCOUNT ?= 
+STEAM_PASSWORD ?= 
 
 .PHONY: all clean image run
 
@@ -11,17 +12,21 @@ clean:
 	docker rmi $(IMAGE_NAME)
 
 image: Dockerfile
-	docker build -t $(IMAGE_NAME) .
+	docker build -t $(IMAGE_NAME) \
+        --build-arg steam_user=$(STEAM_ACCOUNT) \
+        --build-arg steam_password=$(STEAM_PASSWORD) .
 
 run:
 	docker run \
 		-d \
-		-p 27015:27015/tcp \
-		-p 27015:27015/udp \
+		-p 27016:27016/tcp \
+		-p 27016:27016/udp \
 		-p 27020:27020/udp \
-		-p 27020:27020/tcp \
-		-e "SERVER_HOSTNAME=test" \
-		-e "SERVER_PASSWORD=test" \
-		-e "RCON_PASSWORD=test" \
+		-p 27005:27005/udp \
+		-e "SERVER_HOSTNAME=My host" \
+		-e "SERVER_PASSWORD=" \
+		-e "RCON_PASSWORD=" \
 		-e "STEAM_ACCOUNT=$(STEAM_ACCOUNT)" \
+		-e "PORT=27016" \
+		--name counter_strike_go \
 		$(IMAGE_NAME)
