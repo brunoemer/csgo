@@ -57,6 +57,7 @@ rcon_password "$RCON_PASSWORD"
 sv_password "$SERVER_PASSWORD"
 sv_lan 0
 sv_cheats 0
+log on
 SERVERCFG
 
 ./srcds_run \
@@ -73,3 +74,4 @@ SERVERCFG
     +ip $IP \
     +sv_setsteamaccount $STEAM_ACCOUNT \
     -net_port_try 1
+#-nobots
